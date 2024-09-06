@@ -18,7 +18,7 @@ function PageComponent({ serverData, movePage }) {
     <div className='m-6 flex justify-center'>
       {serverData.prev ? (
         <div
-          className='m-2 p-2 w-16 text-center  font-bold text-blue-400 '
+          className='m-2 p-2 w-16 text-center cursor-pointer font-bold text-blue-400 '
           onClick={() => movePage({ page: serverData.prevPage })}
         >
           Prev{' '}
@@ -39,7 +39,7 @@ function PageComponent({ serverData, movePage }) {
 
       {serverData.next ? (
         <div
-          className='m-2 p-2 w-16 text-center font-bold text-blue-400'
+          className='m-2 p-2 w-16 text-center cursor-pointer font-bold text-blue-400'
           onClick={() => movePage({ page: serverData.nextPage })}
         >
           Next

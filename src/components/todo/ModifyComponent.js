@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getOne, PutOne } from '../../api/todoApi';
+import { DeleteOne, getOne, PutOne } from '../../api/todoApi';
 import ResultModal from '../common/ResultModal';
 import useCustomMove from '../../hooks/UseCustomMove';
 
@@ -40,6 +40,13 @@ function ModifyComponent(tno) {
     PutOne(todo).then((data) => {
       console.log('modify result: ' + data);
       setResult('MODIFIED');
+    });
+  };
+
+  const handleClickDelete = () => {
+    DeleteOne(tno).then((data) => {
+      console.log('deleted result: ' + data);
+      setResult('DELETED');
     });
   };
 
@@ -119,13 +126,13 @@ function ModifyComponent(tno) {
       </div>
 
       <div className='flex justify-end p-4'>
-        {/*  <button*/}
-        {/*    type='button'*/}
-        {/*    className='inline-block rounded p-4 m-2 text-xl w-32  text-white bg-red-500'*/}
-        {/*    onClick={handleClickDelete}*/}
-        {/*  >*/}
-        {/*    Delete*/}
-        {/*  </button>*/}
+        <button
+          type='button'
+          className='inline-block rounded p-4 m-2 text-xl w-32  text-white bg-red-500'
+          onClick={handleClickDelete}
+        >
+          Delete
+        </button>
         <button
           type='button'
           className='rounded p-4 m-2 text-xl w-32 text-white bg-blue-500'
