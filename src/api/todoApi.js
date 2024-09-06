@@ -28,3 +28,13 @@ export const PostAdd = async (todoObj) => {
     throw error;
   }
 };
+
+export const DeleteOne = async (tno) => {
+  const res = await axios.delete(`${prefix}/${tno}`);
+  return res.data;
+};
+
+export const PutOne = async (tno, todo) => {
+  const res = await axios.put(`${prefix}/${tno}`, todo);
+  return res.data;
+};
