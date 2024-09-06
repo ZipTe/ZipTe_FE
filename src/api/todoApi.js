@@ -19,7 +19,12 @@ export const getList = async (pageParam) => {
 };
 
 export const PostAdd = async (todoObj) => {
-  const res = await axios.post(`${prefix}/`, todoObj);
-
-  return res.data;
+  try {
+    const res = await axios.post(`${prefix}/`, todoObj);
+    return res.data;
+  } catch (error) {
+    console.log(todoObj);
+    console.error(error);
+    throw error;
+  }
 };

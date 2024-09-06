@@ -3,6 +3,7 @@ import {
   useNavigate,
   useSearchParams,
 } from 'react-router-dom';
+import { useState } from 'react';
 
 const getNum = (param, defaultValue) => {
   if (!param) {
@@ -20,6 +21,7 @@ const useCustomMove = () => {
   const size = getNum(queryParams.get('size'), 10);
 
   const queryDefault = createSearchParams({ page, size }).toString();
+  const [refresh, setRefresh] = useState(false);
 
   const moveToList = (pageParam) => {
     let queryStr = '';
@@ -40,6 +42,7 @@ const useCustomMove = () => {
       pathname: `../list`,
       search: queryStr,
     });
+    setRefresh(!refresh); //추가
   };
 
   const moveToModify = (tno) => {

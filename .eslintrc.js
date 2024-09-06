@@ -32,6 +32,8 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    //props관련 설정 끄기
+    'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/no-unescaped-entities': 0,
   },
