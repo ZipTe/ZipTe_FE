@@ -33,7 +33,7 @@ function ReadPage() {
 
   return (
     <div>
-      <div className={'text-3xl'}> Todo Read Page{tno} </div>
+      <div className='text-3xl'> Todo Read Page{tno} </div>
 
       <ReadComponent tno={tno} />
     </div>

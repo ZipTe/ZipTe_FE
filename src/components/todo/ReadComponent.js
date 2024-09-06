@@ -23,7 +23,7 @@ function ReadComponent(tno) {
   }, [tno]);
 
   return (
-    <div className='border-2 bg-white mt-10 m-2 p-4'>
+    <div className='rounded border-2 w-full bg-white mt-10 m-2 p-4'>
       {makeDiv('Tno', todo.tno)}
       {makeDiv('Title', todo.title)}
       {makeDiv('content', todo.content)}
@@ -53,7 +53,7 @@ function ReadComponent(tno) {
 
 const makeDiv = (title, value) => {
   return (
-    <div className='flex justify-center'>
+    <div className='flex justify-center '>
       <div className='relative mb-4 flex w-full max-w-4xl items-stretch'>
         {/* 왼쪽 텍스트: 고정된 너비 설정 */}
         <div
