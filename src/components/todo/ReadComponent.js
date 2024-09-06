@@ -23,7 +23,7 @@ function ReadComponent(tno) {
   }, [tno]);
 
   return (
-    <div className='border-2 bg-sky-200 mt-10 m-2 p-4'>
+    <div className='border-2 bg-white mt-10 m-2 p-4'>
       {makeDiv('Tno', todo.tno)}
       {makeDiv('Title', todo.title)}
       {makeDiv('content', todo.content)}

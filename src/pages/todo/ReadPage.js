@@ -1,34 +1,35 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+// import { useCallBack } from 'react-router-dom';
 import {
-  createSearchParams,
-  useNavigate,
+  // createSearchParams,
+  // useNavigate,
   useParams,
-  useSearchParams,
+  // useSearchParams,
 } from 'react-router-dom';
 import ReadComponent from '../../components/todo/ReadComponent';
 
 function ReadPage() {
   const { tno } = useParams();
 
-  const [queryParams] = useSearchParams();
-
-  const page = queryParams.get('page') ? parseInt(queryParams.get('page')) : 1;
-  const size = queryParams.get('size') ? parseInt(queryParams.get('size')) : 10;
-
-  const queryStr = createSearchParams({ page: page, size: size }).toString();
-
-  const navigate = useNavigate();
-
-  const moveToModify = useCallback((tno) => {
-    navigate({
-      pathname: `/todo/modify/${tno}`,
-      search: queryStr,
-    });
-  });
-
-  const moveToList = useCallback(() => {
-    navigate({ pathname: `/todo/list`, search: queryStr });
-  }, [page, size]);
+  // const [queryParams] = useSearchParams();
+  //
+  // const page = queryParams.get('page') ? parseInt(queryParams.get('page')) : 1;
+  // const size = queryParams.get('size') ? parseInt(queryParams.get('size')) : 10;
+  //
+  // const queryStr = createSearchParams({ page: page, size: size }).toString();
+  //
+  // const navigate = useNavigate();
+  //
+  // const moveToModify = useCallback((tno) => {
+  //   navigate({
+  //     pathname: `/todo/modify/${tno}`,
+  //     search: queryStr,
+  //   });
+  // });
+  //
+  // const moveToList = useCallback(() => {
+  //   navigate({ pathname: `/todo/list`, search: queryStr });
+  // }, [page, size]);
 
   return (
     <div>

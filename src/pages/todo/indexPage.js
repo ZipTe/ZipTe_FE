@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import BasicLayout from '../../layouts/Basic Layout';
 import { Outlet, useNavigate } from 'react-router-dom';
 
-function IndexPage(props) {
+function IndexPage() {
   const navigate = useNavigate();
 
   const handleClickList = useCallback(() => {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AddPage(props) {
+function AddPage() {
   return <div className={'text-3xl font-extrabold'}>AddPage</div>;
 }
 

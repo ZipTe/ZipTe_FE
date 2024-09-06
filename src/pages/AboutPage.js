@@ -1,7 +1,7 @@
 import React from 'react';
 import BasicLayout from '../layouts/Basic Layout';
 
-function AboutPage(props) {
+function AboutPage() {
   return <BasicLayout>AboutPage</BasicLayout>;
 }
 
