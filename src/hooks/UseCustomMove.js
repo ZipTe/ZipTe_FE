@@ -46,11 +46,11 @@ const useCustomMove = () => {
   };
 
   const moveToModify = (tno) => {
-    navigate({ pathname: `/modify/${tno}`, search: queryDefault });
+    navigate({ pathname: `../modify/${tno}`, search: queryDefault });
   };
 
   const moveToRead = (tno) => {
-    navigate({ pathname: `/read/${tno}`, search: queryDefault });
+    navigate({ pathname: `../read/${tno}`, search: queryDefault });
   };
 
   return { moveToList, moveToModify, moveToRead, page, size };
