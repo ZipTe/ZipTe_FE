@@ -33,7 +33,7 @@ function ListComponent() {
         {serverData.dtoList.map((todo) => (
           <div
             key={todo.tno}
-            className='w-full min-w-[400px]  p-2 m-2 rounded shadow-md'
+            className='w-full min-w-[400px] cursor-pointer p-2 m-2 rounded shadow-md'
             onClick={() => moveToRead(todo.tno)} //이벤트 처리 추가
           >
             <div className='flex '>
