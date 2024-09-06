@@ -30,11 +30,11 @@ export const PostAdd = async (todoObj) => {
 };
 
 export const DeleteOne = async (tno) => {
-  const res = await axios.delete(`${prefix}/${tno}`);
+  const res = await axios.delete(`${prefix}/${tno.tno}`);
   return res.data;
 };
 
-export const PutOne = async (tno, todo) => {
-  const res = await axios.put(`${prefix}/${tno}`, todo);
+export const PutOne = async (todo) => {
+  const res = await axios.put(`${prefix}/${todo.tno}`, todo);
   return res.data;
 };
