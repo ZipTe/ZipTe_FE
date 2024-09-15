@@ -7,6 +7,6 @@ export const postAdd = async (product) => {
   const header = { headers: { 'Content-Type': 'multipart/form-data' } };
 
   const res = await axios.post(`${host}`, product, header);
-
+  console.log(res.data);
   return res.data;
 };

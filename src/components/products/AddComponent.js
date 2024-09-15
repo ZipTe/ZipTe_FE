@@ -1,7 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { postAdd } from '../../api/productsApi';
+import ResultModal from '../common/ResultModal';
+import FetchingModal from '../common/FetchingModal';
+import useCustomMove from '../../hooks/UseCustomMove';
 
-const initialState = {
+const initState = {
   pname: '',
   pdesc: '',
   price: '',
@@ -9,10 +12,13 @@ const initialState = {
 };
 
 function AddComponent() {
-  const [product, setProduct] = useState(initialState);
+  const uploadRef = useRef();
+  const [product, setProduct] = useState({ ...initState });
+  const [fetching, setFetching] = useState(false);
+  const [result, setResult] = useState(null);
+  const { moveToList } = useCustomMove();
 
   // 업로드 처리
-  const uploadRef = useRef();
 
   const handleChangeProduct = (e) => {
     product[e.target.name] = e.target.value;
@@ -34,12 +40,34 @@ function AddComponent() {
     formData.append('price', product.price);
 
     console.log(formData);
-    
-    postAdd(formData);
+    setFetching(true);
+
+    postAdd(formData).then((data) => {
+      setFetching(false);
+      console.log('data' + data.Result);
+      setResult(data.Result);
+    });
+  };
+
+  const closeModal = () => {
+    setResult(null);
+    moveToList({ page: 1 });
   };
 
   return (
     <div className='border-2 bg-white border-sky-200 mt-10 m-2 p-4'>
+      {fetching ? <FetchingModal /> : <></>}
+
+      {result ? (
+        <ResultModal
+          title={'Product Add Result'}
+          content={`${result}번 등록 완료`}
+          callbackFn={closeModal}
+        />
+      ) : (
+        <></>
+      )}
+
       <div className='font-extrabold'> ADD PAGE</div>
       <div className='flex justify-center'>
         <div className='relative mb-4 flex w-full flex-wrap items-stretch'>
