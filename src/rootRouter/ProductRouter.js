@@ -4,6 +4,7 @@ import { Navigate } from 'react-router-dom';
 const Loading = <div>Loading...</div>;
 const ProductList = lazy(() => import('../pages/product/ListPage'));
 const ProductAdd = lazy(() => import('../pages/product/AddPage'));
+const ProductRead = lazy(() => import('../pages/product/ReadPage'));
 
 const ProductRouter = () => {
   return [
@@ -24,6 +25,14 @@ const ProductRouter = () => {
       element: (
         <Suspense fallback={Loading}>
           <ProductAdd />
+        </Suspense>
+      ),
+    },
+    {
+      path: 'read/:pno',
+      element: (
+        <Suspense fallback={Loading}>
+          <ProductRead />
         </Suspense>
       ),
     },

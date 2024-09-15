@@ -7,7 +7,7 @@ import useCustomMove from '../../hooks/UseCustomMove';
 const initState = {
   pname: '',
   pdesc: '',
-  price: '',
+  price: 0,
   files: [],
 };
 
