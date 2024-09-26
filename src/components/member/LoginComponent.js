@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { login, loginPostAsync } from '../../slices/loginSlice';
+import { loginPostAsync } from '../../slices/loginSlice';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const initState = {
   email: '',
@@ -10,6 +11,7 @@ const initState = {
 function LoginComponent() {
   const [loginParam, setLoginParam] = useState({ ...initState });
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     loginParam[e.target.name] = e.target.value;
@@ -17,7 +19,20 @@ function LoginComponent() {
   };
 
   const handleClickLogin = () => {
-    dispatch(loginPostAsync(loginParam));
+    dispatch(loginPostAsync(loginParam))
+      .unwrap()
+      .then((data) => {
+        console.log('After unwrap');
+        console.log(data);
+
+        if (data.error) {
+          console.log(data.error);
+          alert('이메일과 비밀번호를 다시 확인해주세요');
+        } else {
+          alert('로그인 성공했습니다.');
+          navigate({ pathname: '/' }, { replace: true });
+        }
+      });
     // console.log(loginParam);
   };
 
