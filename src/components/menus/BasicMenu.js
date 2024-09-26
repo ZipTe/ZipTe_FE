@@ -28,12 +28,19 @@ const BasicMenu = () => {
           )}
         </ul>
       </div>
-
-      <div className='w-1/5 flex justify-end bg-orange-300 p-4 font-medium'>
-        <div className='text-white text-sm m-1 rounded '>
-          <Link to={'/member/login'}>로그인</Link>
+      {loginState.email ? (
+        <div className='w-1/5 flex justify-end bg-orange-300 p-4 font-medium'>
+          <div className='text-white text-sm m-1 rounded '>
+            <Link to={'/member/login'}>로그아웃</Link>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className='w-1/5 flex justify-end bg-orange-300 p-4 font-medium'>
+          <div className='text-white text-sm m-1 rounded '>
+            <Link to={'/member/login'}>로그인</Link>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
