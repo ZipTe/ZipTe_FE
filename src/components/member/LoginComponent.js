@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { login } from '../../slices/loginSlice';
+import { login, loginPostAsync } from '../../slices/loginSlice';
 import { useDispatch } from 'react-redux';
 
 const initState = {
@@ -17,7 +17,7 @@ function LoginComponent() {
   };
 
   const handleClickLogin = () => {
-    dispatch(login(loginParam));
+    dispatch(loginPostAsync(loginParam));
     // console.log(loginParam);
   };
 

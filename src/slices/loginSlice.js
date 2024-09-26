@@ -1,8 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { loginPost } from '../api/memberApi';
 
 const initState = {
   email: '',
 };
+export const loginPostAsync = createAsyncThunk('loginPostAsync', (param) => {
+  return loginPost(param);
+});
 
 const loginSlice = createSlice({
   name: 'loginSlice',
@@ -11,11 +15,24 @@ const loginSlice = createSlice({
     login: (state, action) => {
       console.log('...Login');
       console.log(action.payload);
-      return { email: action.payload.email };
+
+      return { email: state.email };
     },
     logout: () => {
       console.log('..Logout');
+      return { initState };
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loginPostAsync.fulfilled, (state, action) => {
+      console.log('fulfilled');
+    });
+    builder.addCase(loginPostAsync.pending, (state, action) => {
+      console.log('pending');
+    });
+    builder.addCase(loginPostAsync.rejected, (state, action) => {
+      console.log('rejected');
+    });
   },
 });
 
