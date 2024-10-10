@@ -48,17 +48,14 @@ export const Sidebar = () => {
           <MenuLink href='/about'>About</MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink href=''>Map</MenuLink>
+          <MenuLink href='/map'>Map</MenuLink>
         </MenuItem>
         <MenuItem>
           <MenuLink href='/apt'>Apt</MenuLink>
         </MenuItem>
-        <MenuItem>
-          <MenuLink href='#'>Item</MenuLink>
-        </MenuItem>
       </Menu>
       <Info>
-        <InfoTitle>Follow Us</InfoTitle>
+        <InfoTitle>Follow ZipTe</InfoTitle>
         <InfoText>Stay connected with us</InfoText>
       </Info>
     </Container>
