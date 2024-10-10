@@ -1,27 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import BasicMenu from '../components/menus/BasicMenu';
+// import BasicMenu from '../components/menus/BasicMenu';
+import { Header } from './Header/Header';
+import { Footer } from './Footer/Footer';
+import { Sidebar } from './SideBar/Sidebar';
+import styled from '@emotion/styled';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex: 1;
+`;
+
+const Main = styled.main`
+  flex: 1;
+  padding: 20px;
+`;
 
 const BasicLayout = ({ children }) => {
   return (
-    <>
-      {/* 기존 헤더 대신 BasicMenu*/}
-      <BasicMenu />
-
-      <div className='bg-white my-5 w-full flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0'>
-        <aside className='bg-amber-100 md:w-1/5 lg:w-1/4 px-5 flex py-5'>
-          <h1 className='text-2xl md:text-4xl'>Sidebar</h1>
-        </aside>
-
-        <main className='bg-indigo-300 md:w-4/5 lg:w-3/4 px-5 py-5'>
-          {children}
-        </main>
-
-        <aside className='bg-amber-100 md:w-1/5 lg:w-1/4 px-5 flex py-5'>
-          <h1 className='text-2xl md:text-4xl'>Sidebar</h1>
-        </aside>
-      </div>
-    </>
+    <Container>
+      <Header />
+      <Content>
+        <Sidebar />
+        <Main>{children}</Main>
+      </Content>
+      <Footer />
+    </Container>
   );
 };
 
