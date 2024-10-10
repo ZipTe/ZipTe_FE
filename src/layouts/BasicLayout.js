@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import BasicMenu from '../components/menus/BasicMenu';
 import { Header } from './Header/Header';
 import { Footer } from './Footer/Footer';
 import { Sidebar } from './SideBar/Sidebar';
@@ -22,7 +21,7 @@ const Main = styled.main`
   padding: 20px;
 `;
 
-const BasicLayout = ({ children }) => {
+export const BasicLayout = ({ children }) => {
   return (
     <Container>
       <Header />

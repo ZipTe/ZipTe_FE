@@ -51,7 +51,10 @@ export const Sidebar = () => {
           <MenuLink href=''>Map</MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink href='#'>Apt</MenuLink>
+          <MenuLink href='/apt'>Apt</MenuLink>
+        </MenuItem>
+        <MenuItem>
+          <MenuLink href='#'>Item</MenuLink>
         </MenuItem>
       </Menu>
       <Info>

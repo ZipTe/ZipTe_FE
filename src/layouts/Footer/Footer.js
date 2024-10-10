@@ -12,6 +12,7 @@ const FooterText = styled.p`
 `;
 
 const SocialMediaLink = styled.a`
+  font-size: 10px;
   color: #fff;
   text-decoration: none;
   margin-right: 10px;
@@ -24,7 +25,8 @@ const SocialMediaLink = styled.a`
 export const Footer = () => {
   return (
     <FooterContainer>
-      <FooterText>© 2024 ZipTeKorea. All rights reserved.</FooterText>
+      <FooterText>회사 소개 | 이용약관 | 개인정보처리관리규정 </FooterText>
+      <FooterText>© 2024 ZipTe v1.0. All rights reserved.</FooterText>
       <div>
         <SocialMediaLink href='https://www.instagram.com/eedo_y'>
           Instagram
