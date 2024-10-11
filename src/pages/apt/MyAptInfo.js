@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import ListComponent from '../../components/apt/ListComponent';
+import KakaoMap from '../../components/map/KakaoMap';
 
 const Container = styled.div`
   padding: 20px;
@@ -59,6 +60,7 @@ function MyAptInfo() {
       />
       <Button onClick={handleSubmit}>확인</Button>
       <ListComponent apartment_name={apartmentName} />
+      <KakaoMap />
     </Container>
   );
 }
