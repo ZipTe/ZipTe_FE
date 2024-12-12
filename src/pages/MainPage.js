@@ -21,7 +21,7 @@ const Middle_Container = styled.div`
   padding: 20px;
   margin-left: 150px;
   margin-right: 150px;
-  background-color: grey;
+  background-color: #d0d1d2;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
@@ -138,11 +138,15 @@ function MainPage() {
       </Top_Container>
       <Middle_Container>
         <div>나만의 지역을 찾을 수 있도록 설정해보세요</div>
+        <div className='m-32'></div>
       </Middle_Container>
-      <Top_Container>나만의 관심 지역 내 새로운 소식</Top_Container>
+      <Top_Container>
+        나만의 관심 지역 내 새로운 소식
+        <div className='m-32'></div>
+      </Top_Container>
       <Middle_Container>
-        {' '}
-        ZIPTE AI가 새로운 지역을 추천합니다!{' '}
+        ZIPTE AI가 새로운 지역을 추천합니다!
+        <div className='m-32'></div>
       </Middle_Container>
     </BasicLayout>
   );

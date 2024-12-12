@@ -1,0 +1,88 @@
+/* 지도 컨테이너 스타일 */
+#map {
+    width: 100%;
+    height: 400px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* 커스텀 오버레이 스타일 */
+.wrap {
+    width: 220px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+    position: relative;
+    width: 100%;
+}
+
+.title .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 14px;
+    color: #888;
+    cursor: pointer;
+}
+
+.title .close:hover {
+    color: #333;
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+
+.img {
+    margin-right: 10px;
+}
+
+.img img {
+    border-radius: 8px;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.jibun {
+    font-size: 14px;
+    color: #666;
+    word-wrap: break-word;
+    line-height: 1.4;
+    white-space: normal;
+}
+
+/* 마커 스타일 */
+.kakao-marker {
+    background-color: #ffcc00;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}

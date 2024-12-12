@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import ListComponent from '../../components/apt/ListComponent';
-import KakaoMap from '../../components/map/KakaoMap';
 
 const Container = styled.div`
   padding: 20px;
@@ -38,8 +37,8 @@ const Button = styled.button`
 `;
 
 function MyAptInfo() {
-  const [inputValue, setInputValue] = useState('야탑장미마을동부');
-  const [apartmentName, setApartmentName] = useState('야탑장미마을동부');
+  const [inputValue, setInputValue] = useState('A46392320');
+  const [apartmentName, setApartmentName] = useState('A46392320');
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -60,7 +59,7 @@ function MyAptInfo() {
       />
       <Button onClick={handleSubmit}>확인</Button>
       <ListComponent apartment_name={apartmentName} />
-      <KakaoMap />
+      {/*<MapComponent />*/}
     </Container>
   );
 }

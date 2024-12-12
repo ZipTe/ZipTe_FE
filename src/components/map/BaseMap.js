@@ -1,7 +1,7 @@
 import React from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 
-function KakaoMap(props) {
+function BaseMap(props) {
   return (
     <Map
       center={{ lat: 37.41569817, lng: 127.128401667 }}
@@ -11,4 +11,4 @@ function KakaoMap(props) {
   );
 }
 
-export default KakaoMap;
+export default BaseMap;

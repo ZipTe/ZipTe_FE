@@ -1,10 +1,10 @@
 import BasicLayout from '../../layouts/BasicLayout';
-import KakaoMap from '../../components/map/KakaoMap';
+import BaseMap from '../../components/map/BaseMap';
 
 const MapPage = () => {
   return (
     <BasicLayout>
-      <KakaoMap />
+      <BaseMap />
     </BasicLayout>
   );
 };

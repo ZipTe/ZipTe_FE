@@ -1,14 +1,13 @@
 import axios from 'axios';
 
-export const API_SERVER_HOST = 'http://localhost:8080';
-const config = { 'Content-Type': 'application/json' };
+const apiClient = axios.create({
+  baseURL: 'http://localhost:8080',
+  withCredentials: true, // 쿠키와 세션을 요청에 포함
+});
 
-const host = `${API_SERVER_HOST}`;
-
-export const getAptInfo = async (apartment_name) => {
-  const res = await axios.get(
-    `${host}/api/apt/get?apartment_name=${apartment_name}`,
-    config
-  );
+export const getAptInfo = async (kaptCode) => {
+  const res = await apiClient.get('/api/apt', {
+    params: { kaptCode },
+  });
   return res.data;
 };
