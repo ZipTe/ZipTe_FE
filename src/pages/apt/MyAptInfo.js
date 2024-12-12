@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import ListComponent from '../../components/apt/ListComponent';
+import AIListComponent from '../../components/apt/AIListComponent';
 
 const Container = styled.div`
   padding: 20px;
@@ -36,12 +37,26 @@ const Button = styled.button`
   }
 `;
 
+const CountInput = styled.input`
+  width: 50px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
 function MyAptInfo() {
-  const [inputValue, setInputValue] = useState('A46392320');
-  const [apartmentName, setApartmentName] = useState('A46392320');
+  const [inputValue, setInputValue] = useState('야탑장미마을동부');
+  const [apartmentName, setApartmentName] = useState('야탑장미마을동부');
+  const [count, setCount] = useState(10); // 기본 추천 개수 설정
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
+  };
+
+  const handleCountChange = (event) => {
+    const value = Math.max(1, parseInt(event.target.value, 10) || 1); // 최소 1개로 설정
+    setCount(value);
   };
 
   const handleSubmit = () => {
@@ -58,8 +73,20 @@ function MyAptInfo() {
         placeholder='아파트 이름 입력'
       />
       <Button onClick={handleSubmit}>확인</Button>
+
+      {/* 추천 아파트 개수 입력 */}
+      <div>
+        <label>추천 아파트 개수: </label>
+        <CountInput
+          type='number'
+          value={count}
+          onChange={handleCountChange}
+          min='1'
+        />
+      </div>
+
       <ListComponent apartment_name={apartmentName} />
-      {/*<MapComponent />*/}
+      <AIListComponent apartment_name={apartmentName} count={count} />
     </Container>
   );
 }
