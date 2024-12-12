@@ -81,7 +81,7 @@ function ListComponent({ apartment_name }) {
           <strong>지하 주차 가능 대수:</strong> {apartmentData.kaptdPcnt}
         </p>
         <p>
-          <strong>지상 주차 가능 대수:</strong> {apartmentData.kaptdPcntu})
+          <strong>지상 주차 가능 대수:</strong> {apartmentData.kaptdPcntu}
         </p>
       </div>
 

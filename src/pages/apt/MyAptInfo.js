@@ -17,7 +17,7 @@ const Title = styled.div`
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: 30%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -26,7 +26,7 @@ const Input = styled.input`
 
 const Button = styled.button`
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #333;
   color: white;
   border: none;
   border-radius: 4px;
@@ -38,7 +38,7 @@ const Button = styled.button`
 `;
 
 const CountInput = styled.input`
-  width: 50px;
+  width: 70px;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -61,6 +61,12 @@ function MyAptInfo() {
 
   const handleSubmit = () => {
     setApartmentName(inputValue);
+  };
+
+  // 아파트 이름 클릭 시 ListComponent와 inputValue 업데이트
+  const handleAptClick = (name) => {
+    setApartmentName(name); // 클릭한 아파트 이름으로 상태 업데이트
+    setInputValue(name); // inputValue도 클릭한 아파트 이름으로 업데이트
   };
 
   return (
@@ -86,7 +92,11 @@ function MyAptInfo() {
       </div>
 
       <ListComponent apartment_name={apartmentName} />
-      <AIListComponent apartment_name={apartmentName} count={count} />
+      <AIListComponent
+        apartment_name={apartmentName}
+        count={count}
+        onAptClick={handleAptClick} // 클릭 이벤트 핸들러 전달
+      />
     </Container>
   );
 }
