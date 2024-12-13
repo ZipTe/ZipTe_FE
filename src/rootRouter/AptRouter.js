@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 
 const Loading = <div>Loading...</div>;
 const APTList = lazy(() => import('../pages/apt/MyAptInfo'));
-const APTTest = lazy(() => import('../pages/apt/DongPrice'));
+const DongPrice = lazy(() => import('../pages/apt/DongPrice'));
 const APTPriceList = lazy(() => import('../pages/apt/AptPrice'));
 
 const AptRouter = () => {
@@ -24,10 +24,10 @@ const AptRouter = () => {
       ),
     },
     {
-      path: 'test',
+      path: 'dong',
       element: (
         <Suspense fallback={Loading}>
-          <APTTest />
+          <DongPrice />
         </Suspense>
       ),
     },

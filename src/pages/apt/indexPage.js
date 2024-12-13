@@ -11,7 +11,7 @@ function IndexPage() {
   }, []);
 
   const handleClickTest = useCallback(() => {
-    navigate({ pathname: 'test' });
+    navigate({ pathname: 'dong' });
   }, []);
 
   const handleClickPrice = useCallback(() => {
@@ -29,7 +29,7 @@ function IndexPage() {
           아파트 가격 정보 조회하기
         </div>
         <div className='button' onClick={handleClickTest}>
-          Test
+          법정동별 평당 가격 조회하기
         </div>
       </div>
       <div>

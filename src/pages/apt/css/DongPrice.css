@@ -1,0 +1,65 @@
+/* 전체 컨테이너 스타일 */
+.dong-price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* 제목 스타일 */
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* 폼 스타일 */
+.dong-price-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* 각 폼 그룹 스타일 */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 입력 필드 스타일 */
+.input-field {
+    padding: 8px;
+    margin-top: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #282c34;
+}
+
+/* 버튼 스타일 */
+.submit-btn {
+    background-color: #282c34;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #282c34;
+}

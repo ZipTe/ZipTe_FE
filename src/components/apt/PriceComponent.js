@@ -48,7 +48,7 @@ function PriceComponent({ apt_name, size, year }) {
             </div>
           ))
         ) : (
-          <p>추천 아파트가 없습니다.</p>
+          <p>거래 내역이 없습니다.</p>
         )}
       </div>
     </div>

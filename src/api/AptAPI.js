@@ -11,15 +11,24 @@ export const getAptInfo = async (apartment_name) => {
   });
   return res.data;
 };
+
 export const getAptAI = async (apartment_name, count) => {
   const res = await apiClient.get('/api/apt/AI', {
     params: { apartment_name, count }, // 두 값을 객체 안에 함께 전달
   });
   return res.data;
 };
+
 export const getAptPriceWithSIze = async (apt_name, size, year) => {
   const res = await apiClient.get('/api/apt/price/apt', {
     params: { apt_name, size, year }, // 두 값을 객체 안에 함께 전달
+  });
+  return res.data;
+};
+
+export const getDongPrice = async (dong, year) => {
+  const res = await apiClient.get('/api/apt/price', {
+    params: { dong, year }, // 두 값을 객체 안에 함께 전달
   });
   return res.data;
 };
