@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './KakaoMap.css'; // 같은 폴더에 있는 KakaoMap.css 파일을 임포트
+import './css/KakaoMap.css'; // 같은 폴더에 있는 KakaoMap.css 파일을 임포트
 
 function KakaoMap({ data, longitude, latitude }) {
   useEffect(() => {

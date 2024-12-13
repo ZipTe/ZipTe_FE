@@ -17,3 +17,9 @@ export const getAptAI = async (apartment_name, count) => {
   });
   return res.data;
 };
+export const getAptPriceWithSIze = async (apt_name, size, year) => {
+  const res = await apiClient.get('/api/apt/price/apt', {
+    params: { apt_name, size, year }, // 두 값을 객체 안에 함께 전달
+  });
+  return res.data;
+};

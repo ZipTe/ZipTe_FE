@@ -1,0 +1,47 @@
+/* AI List */
+/* 각 아파트 항목 스타일 */
+.apt-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    width: 30%;
+    /* 높이를 고정하지 않고 비율을 유지하도록 변경 */
+    aspect-ratio: 1.5; /* 가로 세로 비율 유지 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.apt-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.apt-name {
+    font-weight: bold;
+    font-family: 'Apple SD Gothic Neo', sans-serif;
+    color: #333333;
+}
+
+.apt-addr {
+    font-family: 'Apple SD Gothic Neo', sans-serif;
+    font-weight: normal;
+}
+
+.apt-item p {
+    margin: 4px 0;
+}
+
+.apt-item strong {
+    color: #333;
+}
+
+/* 작은 화면에서 비율을 유지하면서 크기 조정 */
+@media (max-width: 768px) {
+    .apt-item {
+        width: 100%;
+        /* 가로 크기를 100%로 설정하고, 비율을 유지 */
+        aspect-ratio: auto;
+    }
+}

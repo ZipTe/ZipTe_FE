@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAptAI } from '../../api/AptAPI';
-import './AIListComponent.css';
+import './css/AIListComponent.css';
 
 const initState = []; // 초기 상태를 빈 배열로 설정
 

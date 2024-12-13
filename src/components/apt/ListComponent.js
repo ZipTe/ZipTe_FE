@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAptInfo } from '../../api/AptAPI';
 import KakaoMap from './KakaoMap';
-import './ListComponent.css'; // CSS 파일 임포트
+import './css/ListComponent.css'; // CSS 파일 임포트
 
 const initState = {
   kaptCode: '정보 없음',

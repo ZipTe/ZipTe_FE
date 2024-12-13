@@ -1,0 +1,84 @@
+/* 전체 컨테이너 스타일 */
+.list-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+/* 정보 항목을 블록 형식으로 나열 */
+.list-info {
+    display: block;
+}
+
+/* 각 정보 항목 스타일 */
+.list-info p {
+    margin: 10px 0; /* 각 항목 간격 설정 */
+    font-size: 16px;
+    color: #666;
+}
+
+/* 강조 텍스트 스타일 */
+strong {
+    color: #333;
+    font-weight: bold;
+}
+
+/* 없을 때 메시지 스타일 */
+.list-info p {
+    text-align: center;
+    color: #888;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+/* 개별 아파트 아이템 스타일 */
+.apt-item {
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 15px; /* 각 항목 간격 추가 */
+}
+
+/* 마우스를 올렸을 때 효과 */
+.apt-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 아파트 속성 스타일 */
+.apt-name,
+.apt-type,
+.apt-time,
+.apt-floor {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* 개별 아파트 항목 스타일 */
+.apt-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+.apt-type,
+.apt-time,
+.apt-floor {
+    font-size: 16px;
+    color: #666;
+}
+
+/* 작은 화면에서 정보 항목을 100%로 설정 */
+@media (max-width: 768px) {
+    .apt-item {
+        width: 100%;
+    }
+}

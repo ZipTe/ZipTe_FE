@@ -6,10 +6,10 @@ const Container = styled.header`
   padding: 2rem;
 `;
 
-const Logo = styled.img`
-  margin-top: 20px;
-  width: 130px;
-`;
+// const Logo = styled.img`
+//   margin-top: 20px;
+//   width: 130px;
+// `;
 
 const Nav = styled.nav`
   margin-top: 10px;
