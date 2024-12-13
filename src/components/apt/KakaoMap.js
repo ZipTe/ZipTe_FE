@@ -67,7 +67,7 @@ function KakaoMap({ data, longitude, latitude }) {
     };
   }, [latitude, longitude, data]); // 의존성 배열에 latitude, longitude, data 추가
 
-  return <div id='map' style={{ width: '100%', height: '400px' }}></div>;
+  return <div id='map' style={{ width: '100%', height: '600px' }}></div>;
 }
 
 export default KakaoMap;

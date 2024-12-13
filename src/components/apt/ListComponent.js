@@ -56,6 +56,18 @@ function ListComponent({ apartment_name }) {
           <strong>주소:</strong> {apartmentData.kaptAddr}
         </p>
         <p>
+          <strong>60㎡ 이하:</strong> {apartmentData.kaptMparea_60}
+        </p>
+        <p>
+          <strong>60㎡ ~ 85㎡ 이하:</strong> {apartmentData.kaptMparea_85}
+        </p>
+        <p>
+          <strong>85㎡ ~ 135㎡ 이하:</strong> {apartmentData.kaptMparea_135}
+        </p>
+        <p>
+          <strong>135㎡ 초과:</strong> {apartmentData.kaptMparea_136}
+        </p>
+        <p>
           <strong>편의시설:</strong> {apartmentData.convenientFacility}
         </p>
         <p>

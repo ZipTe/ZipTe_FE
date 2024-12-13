@@ -1,18 +1,16 @@
-/* List */
-
-/* 전체 스타일 */
+/* 전체 컨테이너 스타일 */
 .list-container {
     max-width: 1000px;
-    margin: 30px;
+    margin: 30px auto;
     padding: 30px;
     font-family: 'Apple SD Gothic Neo', sans-serif;
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 10px 16px rgba(0, 0, 0, 0.1);
-    overflow: scroll;
+    overflow-y: auto;
 }
 
-/* 제목 스타일 */
+/* 제목 텍스트 스타일 */
 .list-container p {
     font-size: 20px;
     margin: 12px 0;
@@ -30,7 +28,7 @@
 /* 지도 영역 스타일 */
 .map-container {
     margin-top: 30px;
-    height: 400px;
+    height: 600px;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -38,7 +36,7 @@
     padding: 10px;
 }
 
-/* 각 정보 항목 스타일 */
+/* 정보 항목 스타일 */
 .list-info {
     display: flex;
     flex-wrap: wrap;
@@ -52,6 +50,7 @@
     margin-bottom: 1px;
     font-size: 15px;
     color: #666;
+    line-height: 1.5;
 }
 
 /* 작은 화면에서 정보 항목을 100%로 설정 */
@@ -61,14 +60,14 @@
     }
 }
 
-/* 테두리 및 구분선 스타일 */
+/* 항목 간 구분선 추가 */
 .list-info p + p {
     border-top: 1px solid #eee;
     padding-top: 12px;
     margin-top: 10px;
 }
 
-/* 버튼 스타일 (예시로 추가할 수 있는 경우) */
+/* 버튼 스타일 */
 .list-info .button {
     background-color: #4CAF50;
     color: white;
@@ -81,6 +80,7 @@
     transition: background-color 0.3s ease;
 }
 
+/* 버튼 호버 스타일 */
 .list-info .button:hover {
     background-color: #45a049;
 }

@@ -21,6 +21,7 @@ function AptPrice() {
 
   const handleSubmit = () => {
     console.log('Updated form data:', formData);
+    setIsSubmitted(false); // 이전 클릭 상태 초기화
     setIsSubmitted(true); // 확인 버튼 클릭 시 데이터가 제출됨
   };
 

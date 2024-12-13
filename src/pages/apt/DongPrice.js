@@ -5,6 +5,8 @@ import './css/DongPrice.css';
 function DongPrice() {
   const [dong, setDong] = useState('야탑동');
   const [year, setYear] = useState(10);
+  const [submittedDong, setSubmittedDong] = useState(''); // 제출된 동
+  const [submittedYear, setSubmittedYear] = useState(0); // 제출된 기간
 
   // '동' 값 변경 핸들러
   const handleDongChange = (e) => {
@@ -16,46 +18,52 @@ function DongPrice() {
     setYear(e.target.value);
   };
 
-  // 폼 제출 핸들러
+  // '확인' 버튼 클릭 시 제출된 값 반영
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 폼이 제출될 때 동과 기간이 업데이트 되며, DongComponent는 그 값을 반영하여 다시 렌더링
+    setSubmittedDong(dong); // 제출된 동 값 업데이트
+    setSubmittedYear(year); // 제출된 기간 값 업데이트
   };
 
   return (
-    <div className='dong-price-container'>
-      <h2>아파트 가격 조회</h2>
-      <form className='dong-price-form' onSubmit={handleSubmit}>
-        <div className='form-group'>
-          <label htmlFor='dong'>동 이름:</label>
-          <input
-            type='text'
-            id='dong'
-            value={dong}
-            onChange={handleDongChange}
-            placeholder='동 이름을 입력하세요'
-            className='input-field'
-          />
-        </div>
-        <div className='form-group'>
-          <label htmlFor='year'>기간 (년):</label>
-          <input
-            type='number'
-            id='year'
-            value={year}
-            onChange={handleYearChange}
-            min='1'
-            max='100'
-            className='input-field'
-          />
-        </div>
-        <button type='submit' className='submit-btn'>
-          조회하기
-        </button>
-      </form>
+    <div className='container'>
+      <div className='title'>원하는 아파트 정보 확인하기</div>
+      <div className='dong-price-container'>
+        <h2>아파트 가격 조회</h2>
+        <form className='dong-price-form' onSubmit={handleSubmit}>
+          <div className='form-group'>
+            <label htmlFor='dong'>동 이름:</label>
+            <input
+              type='text'
+              id='dong'
+              value={dong}
+              onChange={handleDongChange}
+              placeholder='동 이름을 입력하세요'
+              className='input-field'
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='year'>기간 (년):</label>
+            <input
+              type='number'
+              id='year'
+              value={year}
+              onChange={handleYearChange}
+              min='0'
+              max='100'
+              className='input-field'
+            />
+          </div>
+          <button type='submit' className='submit-btn'>
+            확인
+          </button>
+        </form>
 
-      {/* 동 이름과 기간을 입력받아 DongComponent에 전달 */}
-      <DongComponent dong={dong} year={year} />
+        {/* '확인' 버튼 클릭 후 반영된 값만 전달 */}
+        {submittedDong && submittedYear && (
+          <DongComponent dong={submittedDong} year={submittedYear} />
+        )}
+      </div>
     </div>
   );
 }

@@ -1,49 +1,7 @@
 import React, { useState } from 'react';
-import styled from '@emotion/styled';
 import ListComponent from '../../components/apt/ListComponent';
 import AIListComponent from '../../components/apt/AIListComponent';
-
-const Container = styled.div`
-  padding: 20px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
-
-const Title = styled.div`
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333;
-`;
-
-const Input = styled.input`
-  width: 30%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-`;
-
-const Button = styled.button`
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
-
-const CountInput = styled.input`
-  width: 70px;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-`;
+import './css/MyAptInfo.css'; // CSS 파일 import
 
 function MyAptInfo() {
   const [inputValue, setInputValue] = useState('야탑장미마을동부');
@@ -70,24 +28,28 @@ function MyAptInfo() {
   };
 
   return (
-    <Container>
-      <Title>원하는 아파트 정보 확인하기</Title>
-      <Input
+    <div className='container'>
+      <div className='title'>원하는 아파트 정보 확인하기</div>
+      <input
         type='text'
         value={inputValue}
         onChange={handleInputChange}
         placeholder='아파트 이름 입력'
+        className='input'
       />
-      <Button onClick={handleSubmit}>확인</Button>
+      <button onClick={handleSubmit} className='button'>
+        확인
+      </button>
 
       {/* 추천 아파트 개수 입력 */}
       <div>
         <label>추천 아파트 개수: </label>
-        <CountInput
+        <input
           type='number'
           value={count}
           onChange={handleCountChange}
           min='1'
+          className='count-input'
         />
       </div>
 
@@ -97,7 +59,7 @@ function MyAptInfo() {
         count={count}
         onAptClick={handleAptClick} // 클릭 이벤트 핸들러 전달
       />
-    </Container>
+    </div>
   );
 }
 
