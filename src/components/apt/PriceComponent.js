@@ -46,15 +46,15 @@ function PriceComponent({ apt_name, size, year }) {
         // 데이터 가져오기
         const data = response.data || [];
 
-        // 거래 일자 기준으로 내림차순 정렬
-        const sortedData = data.sort(
-          (a, b) => new Date(b['거래 일자']) - new Date(a['거래 일자'])
-        );
-        setApartmentData(sortedData);
+        // // 거래 일자 기준으로 내림차순 정렬
+        // const sortedData = data.sort(
+        //   (a, b) => new Date(b['거래 일자']) - new Date(a['거래 일자'])
+        // );
+        setApartmentData(data);
 
         // 차트 데이터 준비
-        const labels = sortedData.map((apt) => apt['거래 일자']);
-        const prices = sortedData.map((apt) => apt['거래 금액 (만원)']);
+        const labels = data.map((apt) => apt['거래 일자']);
+        const prices = data.map((apt) => apt['거래 금액 (만원)']);
 
         setChartData({
           labels: labels,

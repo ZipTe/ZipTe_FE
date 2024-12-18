@@ -53,6 +53,9 @@ export const Sidebar = () => {
         <MenuItem>
           <MenuLink href='/apt'>Apt</MenuLink>
         </MenuItem>
+        <MenuItem>
+          <MenuLink href='/toss'>Toss</MenuLink>
+        </MenuItem>
       </Menu>
       <Info>
         <InfoTitle>Follow ZipTe</InfoTitle>
