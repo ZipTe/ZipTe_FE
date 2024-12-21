@@ -1,46 +1,44 @@
 import { loadTossPayments } from '@tosspayments/tosspayments-sdk';
 import { useEffect, useState } from 'react';
 
-const clientKey = 'test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm';
-const customerKey = '1YxpCe8nRUy4TZE0d7ZTx';
+export function CheckOutComponent({ orderData }) {
+  console.log('CheckOutComponent에서 받은 orderData:', orderData);
 
-export function CheckOutComponent() {
   const [amount, setAmount] = useState({
     currency: 'KRW',
-    value: 50_000,
+    value: parseInt(orderData?.data?.amount, 10) || 100, // 문자열을 숫자로 변환
   });
+
   const [ready, setReady] = useState(false);
   const [widgets, setWidgets] = useState(null);
 
   useEffect(() => {
     async function fetchPaymentWidgets() {
-      // ------  결제위젯 초기화 ------
-      const tossPayments = await loadTossPayments(clientKey);
-      // 회원 결제
+      const tossPayments = await loadTossPayments(
+        'test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm'
+      );
       const widgets = tossPayments.widgets({
-        customerKey,
+        customerKey: '1YxpCe8nRUy4TZE0d7ZTx',
       });
       setWidgets(widgets);
     }
 
     fetchPaymentWidgets();
-  }, [clientKey, customerKey]);
+  }, []);
 
   useEffect(() => {
     async function renderPaymentWidgets() {
-      if (widgets == null) {
+      if (!widgets || !orderData) {
         return;
       }
-      // ------ 주문의 결제 금액 설정 ------
+
       await widgets.setAmount(amount);
 
       await Promise.all([
-        // ------  결제 UI 렌더링 ------
         widgets.renderPaymentMethods({
           selector: '#payment-method',
           variantKey: 'DEFAULT',
         }),
-        // ------  이용약관 UI 렌더링 ------
         widgets.renderAgreement({
           selector: '#agreement',
           variantKey: 'AGREEMENT',
@@ -51,15 +49,7 @@ export function CheckOutComponent() {
     }
 
     renderPaymentWidgets();
-  }, [widgets]);
-
-  useEffect(() => {
-    if (widgets == null) {
-      return;
-    }
-
-    widgets.setAmount(amount);
-  }, [widgets, amount]);
+  }, [widgets, amount, orderData]);
 
   return (
     <div className='wrapper'>
@@ -68,47 +58,24 @@ export function CheckOutComponent() {
         <div id='payment-method' />
         {/* 이용약관 UI */}
         <div id='agreement' />
-        {/* 쿠폰 체크박스 */}
-        <div>
-          <div>
-            <label htmlFor='coupon-box'>
-              <input
-                id='coupon-box'
-                type='checkbox'
-                aria-checked='true'
-                disabled={!ready}
-                onChange={(event) => {
-                  // ------  주문서의 결제 금액이 변경되었을 경우 결제 금액 업데이트 ------
-                  setAmount(
-                    event.target.checked ? amount - 5_000 : amount + 5_000
-                  );
-                }}
-              />
-              <span>5,000원 쿠폰 적용</span>
-            </label>
-          </div>
-        </div>
-
-        {/* 결제하기 버튼 */}
         <button
           className='button'
           disabled={!ready}
           onClick={async () => {
             try {
-              // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
-              // 결제를 요청하기 전에 orderId, amount를 서버에 저장하세요.
-              // 결제 과정에서 악의적으로 결제 금액이 바뀌는 것을 확인하는 용도입니다.
               await widgets.requestPayment({
-                orderId: 'HEsHfSQc7WsW5aOYEQ0uGl',
-                orderName: 'VIP회원권 외 2건',
+                orderId: 'HEbHfLD0WvW79aOYEQ0qGl',
+                orderName: orderData?.data?.orderName || 'VIP회원권 외 2건',
                 successUrl: window.location.origin + '/toss/success',
                 failUrl: window.location.origin + '/toss/fail',
-                customerEmail: 'customer123@gmail.com',
-                customerName: '김토스',
-                customerMobilePhone: '01012341234',
+                customerEmail:
+                  orderData?.data?.customerEmail || 'customer123@gmail.com',
+                customerName: orderData?.data?.customerName || '김토스',
+                customerMobilePhone:
+                  orderData?.data?.customerMobilePhone || '01012341234',
               });
+              console.log(orderData);
             } catch (error) {
-              // 에러 처리하기
               console.error(error);
             }
           }}

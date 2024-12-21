@@ -12,6 +12,7 @@ const AptIndex = lazy(() => import('../pages/apt/indexPage'));
 const MapIndex = lazy(() => import('../pages/map/MapPage'));
 const TossIndex = lazy(() => import('../pages/toss/IndexPage'));
 const ProductIndex = lazy(() => import('../pages/product/indexPage'));
+const OrderPage = lazy(() => import('../pages/order/OrderPage'));
 
 export const root = createBrowserRouter([
   {
@@ -44,6 +45,14 @@ export const root = createBrowserRouter([
     element: (
       <Suspense fallback={Loading}>
         <MapIndex />
+      </Suspense>
+    ),
+  },
+  {
+    path: 'order',
+    element: (
+      <Suspense fallback={Loading}>
+        <OrderPage />
       </Suspense>
     ),
   },
