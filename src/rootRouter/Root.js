@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import AptRouter from './AptRouter';
 import TossRouter from './TossRouter';
+import ProductRouter from './ProductRouter';
 
 const Loading = <div>Loading...</div>;
 
@@ -10,6 +11,7 @@ const About = lazy(() => import('../pages/AboutPage'));
 const AptIndex = lazy(() => import('../pages/apt/indexPage'));
 const MapIndex = lazy(() => import('../pages/map/MapPage'));
 const TossIndex = lazy(() => import('../pages/toss/IndexPage'));
+const ProductIndex = lazy(() => import('../pages/product/indexPage'));
 
 export const root = createBrowserRouter([
   {
@@ -44,6 +46,15 @@ export const root = createBrowserRouter([
         <MapIndex />
       </Suspense>
     ),
+  },
+  {
+    path: 'product',
+    element: (
+      <Suspense fallback={Loading}>
+        <ProductIndex />
+      </Suspense>
+    ),
+    children: ProductRouter(),
   },
   {
     path: 'toss',

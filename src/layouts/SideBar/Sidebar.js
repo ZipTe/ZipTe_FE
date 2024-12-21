@@ -54,6 +54,9 @@ export const Sidebar = () => {
           <MenuLink href='/apt'>Apt</MenuLink>
         </MenuItem>
         <MenuItem>
+          <MenuLink href='/product'>Product</MenuLink>
+        </MenuItem>
+        <MenuItem>
           <MenuLink href='/toss'>Toss</MenuLink>
         </MenuItem>
       </Menu>
