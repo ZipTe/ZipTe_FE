@@ -1,0 +1,22 @@
+/* Header.css */
+
+.header-container {
+    background-color: #282c34;
+    color: white;
+    padding: 2rem;
+}
+
+.nav {
+    margin-top: 10px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: auto;
+    margin-right: 10px;
+    float: right;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}

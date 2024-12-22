@@ -3,8 +3,8 @@ import axios from 'axios';
 import './css/OrderComponent.css';
 
 const OrderComponent = ({ initialOrderData, onOrderComplete }) => {
-  const [city, setCity] = useState('');
   const [streetAddress, setStreetAddress] = useState('');
+  const [detailAddress, setDetailAddress] = useState('');
   const [zipcode, setZipcode] = useState('');
   const [orderDesc, setOrderDesc] = useState('');
   const [deliveryDesc, setDeliveryDesc] = useState('');
@@ -16,14 +16,27 @@ const OrderComponent = ({ initialOrderData, onOrderComplete }) => {
     setOrderData(initialOrderData);
   }, [initialOrderData]);
 
+  // Daum 우편번호 API 스크립트 동적 로딩
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src =
+      '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // 최종 주문 요청 데이터
     const finalOrderRequest = {
       ...orderData,
-      city,
       streetAddress,
+      detailAddress,
       zipcode,
       orderDesc,
       deliveryDesc,
@@ -36,12 +49,42 @@ const OrderComponent = ({ initialOrderData, onOrderComplete }) => {
       );
 
       console.log(response);
-      // alert('주문이 성공적으로 생성되었습니다!');
       onOrderComplete(response.data); // 부모 컴포넌트에 완료 알림
     } catch (error) {
       console.error('주문 생성 중 오류가 발생했습니다:', error);
-      // alert('주문 생성에 실패했습니다.');
     }
+  };
+
+  // Daum 우편번호 찾기 함수
+  const openPostcode = () => {
+    new window.daum.Postcode({
+      oncomplete: function (data) {
+        let addr = '';
+        let extraAddr = '';
+
+        if (data.userSelectedType === 'R') {
+          addr = data.roadAddress;
+        } else {
+          addr = data.jibunAddress;
+        }
+
+        if (data.userSelectedType === 'R') {
+          if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+            extraAddr += data.bname;
+          }
+          if (data.buildingName !== '' && data.apartment === 'Y') {
+            extraAddr +=
+              extraAddr !== '' ? ', ' + data.buildingName : data.buildingName;
+          }
+          if (extraAddr !== '') {
+            extraAddr = ' (' + extraAddr + ')';
+          }
+        }
+
+        setZipcode(data.zonecode);
+        setStreetAddress(addr);
+      },
+    }).open();
   };
 
   return (
@@ -49,48 +92,44 @@ const OrderComponent = ({ initialOrderData, onOrderComplete }) => {
       <h1>주문 정보 입력</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>상품이름:</label>
-          <input
-            type='text'
-            value={orderData.items[0]?.productId || '없음'} // productId 표시 (수정 불가)
-            readOnly
-          />
+          <label>주문 상품 목록:</label>
+          <ul>
+            {orderData.items?.length > 0 ? (
+              orderData.items.map((item, index) => (
+                <li key={index}>
+                  <div>상품 이름: {item.productId}</div>
+                  <div>수량: {item.count}</div>
+                </li>
+              ))
+            ) : (
+              <p>선택된 상품이 없습니다.</p>
+            )}
+          </ul>
         </div>
         <div>
-          <label>수량:</label>
-          <input
-            type='number'
-            value={orderData.items[0]?.count || 0} // count 표시 (수정 불가)
-            readOnly
-          />
-        </div>
-        <div>
-          <label>도시:</label>
-          <input
-            type='text'
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            placeholder='도시를 입력하세요'
-          />
+          <label>우편번호:</label>
+          <input type='text' value={zipcode} readOnly placeholder='우편번호' />
+          <input type='button' value='주소 찾기' onClick={openPostcode} />
         </div>
         <div>
           <label>주소:</label>
           <input
             type='text'
             value={streetAddress}
-            onChange={(e) => setStreetAddress(e.target.value)}
-            placeholder='상세 주소를 입력하세요'
+            readOnly
+            placeholder='주소'
           />
         </div>
         <div>
-          <label>우편번호:</label>
+          <label>상세주소:</label>
           <input
-            type='number'
-            value={zipcode}
-            onChange={(e) => setZipcode(e.target.value)}
-            placeholder='우편번호를 입력하세요'
+            type='text'
+            value={detailAddress}
+            onChange={(e) => setDetailAddress(e.target.value)}
+            placeholder='상세 주소를 입력하세요'
           />
         </div>
+
         <div>
           <label>주문 메시지:</label>
           <textarea

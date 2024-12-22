@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import './css/SuccessPage.css';
 
 export default function SuccessPage() {
   const navigate = useNavigate();
@@ -46,10 +47,13 @@ export default function SuccessPage() {
     <div className='result wrapper'>
       <div className='box_section'>
         <h2>결제 성공</h2>
-        <p>{`주문번호: ${searchParams.get('orderId')}`}</p>
-        <p>{`결제 금액: ${Number(
-          searchParams.get('amount')
-        ).toLocaleString()}원`}</p>
+        <p>
+          주문번호: <span>{searchParams.get('orderId')}</span>
+        </p>
+        <p>
+          결제 금액:{' '}
+          <span>{Number(searchParams.get('amount')).toLocaleString()}원</span>
+        </p>
       </div>
     </div>
   );

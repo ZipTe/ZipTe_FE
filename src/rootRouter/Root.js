@@ -6,12 +6,13 @@ import ProductRouter from './ProductRouter';
 
 const Loading = <div>Loading...</div>;
 
-const Main = lazy(() => import('../pages/MainPage'));
+const Main = lazy(() => import('../pages/main/MainPage'));
 const About = lazy(() => import('../pages/AboutPage'));
 const AptIndex = lazy(() => import('../pages/apt/indexPage'));
 const MapIndex = lazy(() => import('../pages/map/MapPage'));
 const TossIndex = lazy(() => import('../pages/toss/IndexPage'));
 const ProductIndex = lazy(() => import('../pages/product/indexPage'));
+const CartPage = lazy(() => import('../pages/cart/CartPage'));
 const OrderPage = lazy(() => import('../pages/order/OrderPage'));
 
 export const root = createBrowserRouter([
@@ -64,6 +65,14 @@ export const root = createBrowserRouter([
       </Suspense>
     ),
     children: ProductRouter(),
+  },
+  {
+    path: 'cart',
+    element: (
+      <Suspense fallback={Loading}>
+        <CartPage />
+      </Suspense>
+    ),
   },
   {
     path: 'toss',

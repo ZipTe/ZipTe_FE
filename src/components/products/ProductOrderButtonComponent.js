@@ -30,9 +30,7 @@ function ProductOrderButtonComponent({ product }) {
       items: [
         {
           productId: product.id,
-          productName: product.pname, // 상품명 추가
           count: quantity,
-          totalPrice: totalPrice, // 총 가격 추가
         },
       ],
     };

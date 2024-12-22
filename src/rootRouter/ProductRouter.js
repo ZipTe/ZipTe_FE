@@ -17,10 +17,10 @@ const ProductRouter = () => {
         </Suspense>
       ),
     },
-    // {
-    //   path: '',
-    //   element: <Navigate replace to={'list'} />,
-    // },
+    {
+      path: '',
+      element: <Navigate replace to={'list'} />,
+    },
     {
       path: 'add',
       element: (

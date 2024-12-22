@@ -20,7 +20,6 @@ const OrderPage = () => {
   return (
     <BasicLayout>
       <div>
-        <h1>주문 페이지</h1>
         {!orderCompleteData ? (
           <OrderComponent
             initialOrderData={initialOrderData}

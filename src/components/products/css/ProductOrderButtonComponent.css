@@ -1,5 +1,5 @@
 .order-component-container {
-    border: 2px solid #87c0e2;
+    border: 2px solid #eeeeee; /* 연한 파란색 테두리 */
     margin-top: 20px;
     margin: 20px;
     padding: 20px;
@@ -28,6 +28,7 @@
 .quantity-input {
     width: 60px;
     padding: 5px;
+    border: 2px solid #eeeeee; /* 연한 파란색 테두리 */
     font-size: 16px;
 }
 
@@ -40,7 +41,7 @@
 .button-cart,
 .button-order {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #333;
     color: white;
     border: none;
     border-radius: 5px;
@@ -49,5 +50,5 @@
 
 .button-cart:hover,
 .button-order:hover {
-    background-color: #45a049;
+    background-color: #333;
 }

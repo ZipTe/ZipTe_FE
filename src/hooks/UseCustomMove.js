@@ -49,19 +49,22 @@ const useCustomMove = () => {
     navigate({ pathname: `../modify/${tno}`, search: queryDefault });
   };
 
-  const moveToOrder = (tno) => {
-    navigate({ pathname: `../order/${tno}`, search: queryDefault });
-  };
-
-  const addToCart = (tno) => {
-    navigate({ pathname: `../order/${tno}`, search: queryDefault });
-  };
-
   const moveToRead = (tno) => {
     navigate({ pathname: `../read/${tno}`, search: queryDefault });
   };
 
-  return { moveToList, moveToModify, moveToRead, page, size };
+  const moveToProductRead = (tno) => {
+    navigate({ pathname: `../product/read/${tno}` });
+  };
+
+  return {
+    moveToList,
+    moveToModify,
+    moveToRead,
+    moveToProductRead,
+    page,
+    size,
+  };
 };
 
 export default useCustomMove;

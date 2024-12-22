@@ -3,6 +3,7 @@
     margin-top: 20px;
     margin: 20px;
     padding: 20px;
+    border: 2px solid #eeeeee; /* 연한 파란색 테두리 */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
