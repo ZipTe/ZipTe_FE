@@ -1,10 +1,10 @@
 import BasicLayout from '../../layouts/BasicLayout';
-import BaseMap from '../../components/map/BaseMap';
+import BaseMapComponent from '../../components/map/BaseMapComponent';
 
 const MapPage = () => {
   return (
     <BasicLayout>
-      <BaseMap />
+      <BaseMapComponent />
     </BasicLayout>
   );
 };

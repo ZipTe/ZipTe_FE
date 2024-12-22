@@ -1,0 +1,31 @@
+/* FetchingModal.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1055;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    place-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    border-radius: 24px;
+    min-width: 600px;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.modal-text {
+    font-size: 2.25rem; /* Tailwind's text-4xl equivalent */
+    font-weight: 800; /* Tailwind's font-extrabold equivalent */
+    color: #333; /* Tailwind's text-orange-400 equivalent */
+    margin: 5rem; /* Tailwind's m-20 equivalent */
+}

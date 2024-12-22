@@ -1,0 +1,91 @@
+/* MainPageStyles.css */
+.logo {
+    margin-top: 20px;
+    width: 130px;
+}
+
+.top-container {
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.middle-container {
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    background-color: #d0d1d2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.apt-button {
+    padding: 10px 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 200px;
+    background-color: #ffee8c;
+    color: black;
+    border-radius: 10px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+.apt-button:hover {
+    background-color: #ffe880;
+}
+
+.button {
+    padding: 10px 20px;
+    margin-right: 20px;
+    width: 200px;
+    background-color: #282c34;
+    color: white;
+    border: wheat;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #3c4049;
+}
+
+.search-container {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-button {
+    padding: 10px 20px;
+    width: 70px;
+    background-color: #333;
+    border-radius: 8px;
+    margin-right: 10px;
+    color: white;
+    border: wheat;
+    cursor: pointer;
+}
+
+.search-input {
+    padding: 10px;
+    width: 300px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.button-main-text {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.button-small-text {
+    font-size: 10px;
+    color: #666;
+    margin-top: 5px;
+}
