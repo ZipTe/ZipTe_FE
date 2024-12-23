@@ -1,18 +1,16 @@
 import { loadTossPayments } from '@tosspayments/tosspayments-sdk';
 import { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid'; // UUID 라이브러리 임포트
 
 export function CheckOutComponent({ orderData }) {
   console.log('CheckOutComponent에서 받은 orderData:', orderData);
 
   const [amount, setAmount] = useState({
     currency: 'KRW',
-    value: parseInt(orderData?.data?.amount, 10) || 100, // 문자열을 숫자로 변환
+    value: parseInt(orderData?.data?.amount, 10) || 100, // 문자열을 숫자로 변환\
   });
 
   const [ready, setReady] = useState(false);
   const [widgets, setWidgets] = useState(null);
-  const [orderId, setOrderId] = useState(uuidv4()); // UUID로 초기값 설정
 
   useEffect(() => {
     async function fetchPaymentWidgets() {
@@ -35,7 +33,6 @@ export function CheckOutComponent({ orderData }) {
       }
 
       await widgets.setAmount(amount);
-
       await Promise.all([
         widgets.renderPaymentMethods({
           selector: '#payment-method',
@@ -66,7 +63,7 @@ export function CheckOutComponent({ orderData }) {
           onClick={async () => {
             try {
               await widgets.requestPayment({
-                orderId: orderId, // UUID 사용
+                orderId: orderData?.data?.orderId || 'HEbHfLD3WvW1aOYEQ0qGl', // UUID 사용
                 orderName: orderData?.data?.orderName || 'VIP회원권 외 2건',
                 successUrl: window.location.origin + '/toss/success',
                 failUrl: window.location.origin + '/toss/fail',

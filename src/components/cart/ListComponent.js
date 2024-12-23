@@ -4,6 +4,9 @@ import useCustomMove from '../../hooks/UseCustomMove';
 import FetchingModal from '../common/FetchingModal';
 import './css/ListComponent.css';
 import { getCart } from '../../api/CartAPI';
+import { API_SERVER_HOST } from '../../api/ProductAPI';
+
+const host = API_SERVER_HOST;
 
 const initState = {
   data: { items: [] },
@@ -87,14 +90,31 @@ function ListComponent({ id }) {
                 </div>
                 <div className='product-card-details'>
                   <div className='product-info'>
-                    <div>개별 가격: {product.price.toLocaleString()}원</div>
-                    <div>원하는 수량: {product.quantity}</div>
-                    <div>총 가격: {product.totalPrice.toLocaleString()}원</div>
-                    <div
-                      className='product-name'
-                      onClick={() => moveToProductRead(product.productId)}
-                    >
-                      상품으로 이동하기
+                    <div className='product-image'>
+                      <img
+                        alt='product'
+                        className='product-image'
+                        src={
+                          product.productImage &&
+                          product.productImage.length > 0
+                            ? `${host}/api/product/view/${product.productImage}`
+                            : '/path/to/default-image.jpg' // Default image path
+                        }
+                      />
+                    </div>
+
+                    <div className='product-info-details'>
+                      <div>개별 가격: {product.price.toLocaleString()}원</div>
+                      <div>원하는 수량: {product.quantity}</div>
+                      <div>
+                        총 가격: {product.totalPrice.toLocaleString()}원
+                      </div>
+                      <div
+                        className='product-name'
+                        onClick={() => moveToProductRead(product.productId)}
+                      >
+                        상품으로 이동하기
+                      </div>
                     </div>
                   </div>
                 </div>

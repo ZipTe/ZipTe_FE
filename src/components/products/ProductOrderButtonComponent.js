@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './css/ProductOrderButtonComponent.css';
-import { useNavigate } from 'react-router-dom'; // useNavigate 훅 사용
+import { useNavigate } from 'react-router-dom';
+import { postAdd } from '../../api/CartAPI'; // useNavigate 훅 사용
 
 function ProductOrderButtonComponent({ product }) {
   const [quantity, setQuantity] = useState(1);
@@ -19,6 +20,22 @@ function ProductOrderButtonComponent({ product }) {
     navigate('/order', { state: { orderData } }); // 주문 데이터와 함께 이동
   };
 
+  const handleCartButtonClick = () => {
+    const cartData = createCartData(); // 주문 데이터 생성
+
+    // cartData를 서버에 보내는 함수 호출
+    postAdd(cartData)
+      .then(() => {
+        alert('장바구니에 추가되었습니다:');
+        console.log(cartData);
+        // 서버 응답에 따라 처리 (예: 성공 메시지 출력)
+      })
+      .catch((error) => {
+        console.error('장바구니 추가 실패:', error);
+        // 실패 처리
+      });
+  };
+
   const createOrderData = () => {
     return {
       memberId: 1, // 예시로 1번 회원
@@ -31,6 +48,18 @@ function ProductOrderButtonComponent({ product }) {
         {
           productId: product.id,
           count: quantity,
+        },
+      ],
+    };
+  };
+
+  const createCartData = () => {
+    return {
+      memberId: 1, // 예시로 1번 회원
+      items: [
+        {
+          productId: product.id,
+          quantity: quantity,
         },
       ],
     };
@@ -73,7 +102,11 @@ function ProductOrderButtonComponent({ product }) {
       </div>
 
       <div className='button-container'>
-        <button type='button' className='button-cart'>
+        <button
+          type='button'
+          className='button-cart'
+          onClick={handleCartButtonClick}
+        >
           장바구니에 담기
         </button>
         <button

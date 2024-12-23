@@ -1,6 +1,7 @@
+// src/components/OrderComponent.js
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './css/OrderComponent.css';
+import { createOrder } from '../../api/OrderAPI';
 
 const OrderComponent = ({ initialOrderData, onOrderComplete }) => {
   const [streetAddress, setStreetAddress] = useState('');
@@ -43,13 +44,10 @@ const OrderComponent = ({ initialOrderData, onOrderComplete }) => {
     };
 
     try {
-      const response = await axios.post(
-        'http://localhost:8080/api/order',
-        finalOrderRequest
-      );
-
+      // API 호출을 orderAPI에서 분리한 createOrder 메소드로 처리
+      const response = await createOrder(finalOrderRequest);
       console.log(response);
-      onOrderComplete(response.data); // 부모 컴포넌트에 완료 알림
+      onOrderComplete(response); // 부모 컴포넌트에 완료 알림
     } catch (error) {
       console.error('주문 생성 중 오류가 발생했습니다:', error);
     }

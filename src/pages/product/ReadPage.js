@@ -2,8 +2,8 @@ import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import ReadComponent from '../../components/products/ReadComponent';
 import ProductOrderButtonComponent from '../../components/products/ProductOrderButtonComponent';
-import { getOne } from '../../api/ProductAPI';
-import './css/ReadPage.css'; // CSS 파일 import
+import './css/ReadPage.css';
+import { getOne } from '../../api/ProductAPI'; // CSS 파일 import
 
 const ReadPage = () => {
   const { pno } = useParams();
