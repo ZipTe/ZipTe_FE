@@ -56,6 +56,9 @@ export const Sidebar = () => {
         <MenuItem>
           <MenuLink href='/product'>Product</MenuLink>
         </MenuItem>
+        <MenuItem>
+          <MenuLink href='/order'>Toss</MenuLink>
+        </MenuItem>
       </Menu>
       <Info>
         <InfoTitle>Follow ZipTe</InfoTitle>

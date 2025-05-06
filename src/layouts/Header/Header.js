@@ -8,8 +8,23 @@ export const Header = () => {
         <a className='nav-link' href='/cart'>
           장바구니
         </a>
-        <a className='nav-link' href='#'>
-          로그인 / 회원가입
+        <a
+          className='nav-link'
+          href='http://localhost:8080/oauth2/authorization/naver'
+        >
+          네이버 로그인
+        </a>
+        <a
+          className='nav-link'
+          href='http://localhost:8080/oauth2/authorization/kakao'
+        >
+          카카오 로그인
+        </a>
+        <a
+          className='nav-link'
+          href='http://localhost:8080/oauth2/authorization/google'
+        >
+          구글 로그인
         </a>
         <a className='nav-link' href='/'>
           Home

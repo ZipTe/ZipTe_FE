@@ -47,22 +47,18 @@ function ListComponent({ id }) {
 
     // 선택된 아이템 데이터를 생성
     const selectedData = selectedItems.map((productId) => {
-      const product = serverData.data.items.find(
-        (item) => item.productId === productId
+      const item = serverData.data.items.find(
+        (item) => item.discountProduct.product.id === productId // 변경된 경로 참조
       );
       return {
-        productId: product.productId,
-        count: product.quantity,
+        productId: item.discountProduct.product.id,
+        count: item.quantity,
       };
     });
 
     const createOrderData = {
       memberId: id || 1,
-      city: '',
-      streetAddress: '',
-      zipcode: '',
-      orderDesc: '',
-      deliveryDesc: '',
+      savedAddressId: 0,
       items: selectedData,
     };
 
@@ -77,50 +73,55 @@ function ListComponent({ id }) {
 
       <div className='cart-list'>
         {serverData.data.items && serverData.data.items.length > 0 ? (
-          serverData.data.items.map((product) => (
-            <div key={product.productId} className='product-card'>
-              <div className='product-card-content'>
-                <div className='product-card-header'>
-                  <input
-                    type='checkbox'
-                    checked={selectedItems.includes(product.productId)}
-                    onChange={() => handleCheckboxChange(product.productId)}
-                  />
-                  <div>{product.productName}</div>
-                </div>
-                <div className='product-card-details'>
-                  <div className='product-info'>
-                    <div className='product-image'>
-                      <img
-                        alt='product'
-                        className='product-image'
-                        src={
-                          product.productImage &&
-                          product.productImage.length > 0
-                            ? `${host}/api/product/view/${product.productImage}`
-                            : '/path/to/default-image.jpg' // Default image path
-                        }
-                      />
-                    </div>
+          serverData.data.items.map((item) => {
+            const product = item.discountProduct.product;
+            const discountPrice = item.discountProduct.discountPrice;
+            const imageName =
+              product.uploadFileNames && product.uploadFileNames.length > 0
+                ? product.uploadFileNames[0]
+                : 'default-image.jpg'; // Default image
 
-                    <div className='product-info-details'>
-                      <div>개별 가격: {product.price.toLocaleString()}원</div>
-                      <div>원하는 수량: {product.quantity}</div>
-                      <div>
-                        총 가격: {product.totalPrice.toLocaleString()}원
+            return (
+              <div key={product.id} className='product-card'>
+                <div className='product-card-content'>
+                  <div className='product-card-header'>
+                    <input
+                      type='checkbox'
+                      checked={selectedItems.includes(product.id)}
+                      onChange={() => handleCheckboxChange(product.id)}
+                    />
+                    <div>{product.pname}</div>
+                  </div>
+                  <div className='product-card-details'>
+                    <div className='product-info'>
+                      <div className='product-image'>
+                        <img
+                          alt='product'
+                          className='product-image'
+                          src={`${host}/api/product/view/${imageName}`}
+                        />
                       </div>
-                      <div
-                        className='product-name'
-                        onClick={() => moveToProductRead(product.productId)}
-                      >
-                        상품으로 이동하기
+
+                      <div className='product-info-details'>
+                        <div>개별 가격: {discountPrice.toLocaleString()}원</div>
+                        <div>원하는 수량: {item.quantity}</div>
+                        <div>
+                          총 가격:{' '}
+                          {(discountPrice * item.quantity).toLocaleString()}원
+                        </div>
+                        <div
+                          className='product-name'
+                          onClick={() => moveToProductRead(product.id)}
+                        >
+                          상품으로 이동하기
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))
+            );
+          })
         ) : (
           <p>장바구니에 상품이 없습니다.</p>
         )}

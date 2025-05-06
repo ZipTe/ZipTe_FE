@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import useCustomMove from '../../hooks/UseCustomMove';
-import FetchingModal from '../common/FetchingModal';
-import PageComponent from '../common/PageComponent';
 import { API_SERVER_HOST, getList } from '../../api/ProductAPI';
 import './css/ListComponent.css';
 
@@ -19,9 +16,7 @@ const initState = {
 };
 const host = API_SERVER_HOST;
 
-function ListComponent() {
-  const { moveToList, moveToRead, page, size } = useCustomMove();
-
+function MyPaymentComponent() {
   const [serverData, setServerData] = useState(initState);
   const [fetching, setFetching] = useState(false);
 
@@ -76,4 +71,4 @@ function ListComponent() {
   );
 }
 
-export default ListComponent;
+export default MyPaymentComponent;

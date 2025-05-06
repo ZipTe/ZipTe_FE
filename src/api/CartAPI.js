@@ -14,7 +14,7 @@ export const postAdd = async (product) => {
 };
 
 export const getCart = async (id) => {
-  const res = await axios.get(`${host}/${id}`, {
+  const res = await axios.get(`${host}/myCart`, {
     withCredentials: true, // 쿠키 포함
   });
   console.log(res.data);

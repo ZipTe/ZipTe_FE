@@ -1,0 +1,98 @@
+/* 전체 레이아웃 */
+.signup-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.title-bar {
+    background-color: #2a2e70;
+    padding: 1.2rem 1rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.title-bar svg {
+    margin-right: 0.5rem;
+}
+
+/* 필드 스타일 */
+label {
+    font-weight: 600;
+    margin-top: 1rem;
+    display: block;
+    color: #333;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='date'],
+input[type='tel'] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background-color: #f5f5f5;
+}
+
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 0.9rem;
+}
+
+/* 스위치 스타일 (선택 동의 여부) */
+.switch-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.switch-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+}
+
+/* 버튼 스타일 */
+button {
+    margin-top: 2rem;
+    width: 100%;
+    background-color: #2a2e70;
+    color: white;
+    font-size: 1rem;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1f2359;
+}
+
+/* 에러/성공 메시지 */
+.message {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.message.error {
+    color: red;
+}
+
+.message.success {
+    color: green;
+}

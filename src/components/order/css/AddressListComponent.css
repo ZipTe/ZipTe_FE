@@ -1,0 +1,69 @@
+/* Address List Container */
+.address-list-container {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.address-list-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.address-list-container p {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.address-list-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.address-item {
+    background-color: #ffffff;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+}
+
+.address-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.address-item p {
+    margin: 5px 0;
+}
+
+.address-item strong {
+    color: #333;
+}
+
+.address-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Basic Default Address Highlight */
+.address-item.default-address {
+    border: 2px solid #4caf50;
+    background-color: #e8f5e9;
+}
+
+.address-item.default-address strong {
+    color: #4caf50;
+}
+
+/* Empty Address Message */
+.address-list-container p {
+    text-align: center;
+    color: #888;
+}

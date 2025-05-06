@@ -14,6 +14,7 @@ const TossIndex = lazy(() => import('../pages/toss/IndexPage'));
 const ProductIndex = lazy(() => import('../pages/product/indexPage'));
 const CartPage = lazy(() => import('../pages/cart/CartPage'));
 const OrderPage = lazy(() => import('../pages/order/OrderPage'));
+const MemberPage = lazy(() => import('../pages/member/RegisterPage'));
 
 export const root = createBrowserRouter([
   {
@@ -79,6 +80,15 @@ export const root = createBrowserRouter([
     element: (
       <Suspense fallback={Loading}>
         <TossIndex />
+      </Suspense>
+    ),
+    children: TossRouter(),
+  },
+  {
+    path: 'signup',
+    element: (
+      <Suspense fallback={Loading}>
+        <MemberPage />
       </Suspense>
     ),
     children: TossRouter(),

@@ -3,16 +3,16 @@ import './css/ProductOrderButtonComponent.css';
 import { useNavigate } from 'react-router-dom';
 import { postAdd } from '../../api/CartAPI'; // useNavigate 훅 사용
 
-function ProductOrderButtonComponent({ product }) {
+function ProductOrderButtonComponent({ serverData }) {
   const [quantity, setQuantity] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(product.price);
+  const [totalPrice, setTotalPrice] = useState(serverData.discountPrice);
 
   const navigate = useNavigate(); // useNavigate 훅 사용
 
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.value, 10);
     setQuantity(newQuantity);
-    setTotalPrice(newQuantity * product.price);
+    setTotalPrice(newQuantity * serverData.discountPrice);
   };
 
   const handleOrderButtonClick = () => {
@@ -26,8 +26,8 @@ function ProductOrderButtonComponent({ product }) {
     // cartData를 서버에 보내는 함수 호출
     postAdd(cartData)
       .then(() => {
-        alert('장바구니에 추가되었습니다:');
         console.log(cartData);
+        alert('장바구니에 추가되었습니다:');
         // 서버 응답에 따라 처리 (예: 성공 메시지 출력)
       })
       .catch((error) => {
@@ -39,14 +39,10 @@ function ProductOrderButtonComponent({ product }) {
   const createOrderData = () => {
     return {
       memberId: 1, // 예시로 1번 회원
-      city: '',
-      streetAddress: '',
-      zipcode: '',
-      orderDesc: '',
-      deliveryDesc: '',
+      savedAddressId: 0,
       items: [
         {
-          productId: product.id,
+          productId: serverData.product.id,
           count: quantity,
         },
       ],
@@ -56,12 +52,10 @@ function ProductOrderButtonComponent({ product }) {
   const createCartData = () => {
     return {
       memberId: 1, // 예시로 1번 회원
-      items: [
-        {
-          productId: product.id,
-          quantity: quantity,
-        },
-      ],
+      item: {
+        productId: serverData.product.id,
+        quantity: quantity,
+      },
     };
   };
 
@@ -70,14 +64,16 @@ function ProductOrderButtonComponent({ product }) {
       <div className='product-info-container'>
         <div className='product-info-row'>
           <div className='product-info-label'>상품 이름</div>
-          <div className='product-info-value'>{product.pname}</div>
+          <div className='product-info-value'>{serverData.product.pname}</div>
         </div>
       </div>
 
       <div className='product-info-container'>
         <div className='product-info-row'>
           <div className='product-info-label'>가격</div>
-          <div className='product-info-value'>{product.price} 원</div>
+          <div className='product-info-value'>
+            {serverData.discountPrice} 원
+          </div>
         </div>
       </div>
 
