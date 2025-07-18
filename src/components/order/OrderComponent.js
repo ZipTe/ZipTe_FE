@@ -1,41 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import './css/OrderComponent.css';
-import { createOrder } from '../../api/OrderAPI';
+import { v4 as uuidv4 } from 'uuid'; // 설치 필요: npm install uuid
 
 const OrderComponent = ({
   initialOrderData,
-  savedAddressId, // 부모 컴포넌트에서 넘겨받은 주소 ID
+  savedAddressId,
   onOrderComplete,
 }) => {
-  const [orderData, setOrderData] = useState(initialOrderData);
+  const defaultOrderData = {
+    items: [{ productId: 'EXAMPLE-001', count: 1 }],
+    savedAddressId: savedAddressId || null,
+  };
 
-  // useEffect를 사용하여 initialOrderData가 변경될 때마다 상태를 업데이트
+  const [orderData, setOrderData] = useState(
+    initialOrderData || defaultOrderData
+  );
+
   useEffect(() => {
-    console.log('initialOrderData 변경됨:', initialOrderData); // initialOrderData가 변경될 때마다 확인
-
-    // orderData가 갱신되는 과정 확인
     setOrderData((prevOrderData) => {
-      const newData = {
+      const merged = {
+        ...defaultOrderData,
         ...prevOrderData,
-        savedAddressId: savedAddressId || prevOrderData.savedAddressId, // 주소 ID 갱신
-        ...initialOrderData, // 기존 상태와 병합
+        ...initialOrderData,
+        savedAddressId: savedAddressId || prevOrderData?.savedAddressId,
       };
-      console.log('새로 설정된 orderData:', newData); // 병합된 새 데이터 확인
-      return newData;
+      console.log('새로 설정된 orderData:', merged);
+      return merged;
     });
   }, [initialOrderData, savedAddressId]);
 
-  // 주문 처리 함수
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // API 호출을 orderAPI에서 분리한 createOrder 메소드로 처리
-      const response = await createOrder(orderData); // 업데이트된 orderData 사용
-      console.log('주문 응답:', response);
-      onOrderComplete(response); // 부모 컴포넌트에 완료 알림
+      const uniqueOrderId = `ORDER-${uuidv4()}`; // 매번 유일한 ID
+
+      const mockResponse = {
+        orderId: uniqueOrderId,
+        items: orderData.items,
+        savedAddressId: orderData.savedAddressId,
+        orderTime: new Date().toISOString(),
+      };
+
+      console.log('모의 주문 응답:', mockResponse);
+      onOrderComplete(mockResponse);
     } catch (error) {
-      console.error('주문 생성 중 오류가 발생했습니다:', error);
+      console.error('모의 주문 중 오류가 발생했습니다:', error);
     }
   };
 

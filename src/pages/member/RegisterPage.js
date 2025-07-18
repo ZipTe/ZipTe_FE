@@ -1,8 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useSearchParams } from 'react-router-dom';
 import './Oauth2SignupPage.css';
 
+// ✅ 쿠키에서 XSRF-TOKEN 읽는 함수
+function getCookie(name) {
+  const cookie = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith(name + '='));
+  return cookie ? decodeURIComponent(cookie.split('=')[1]) : null;
+}
+
 const Oauth2SignupPage = () => {
+  const [searchParams] = useSearchParams();
+  const state = searchParams.get('state');
   const [oauthUser, setOauthUser] = useState(null);
   const [nickname, setNickname] = useState('');
   const [birthday, setBirthday] = useState('');
@@ -18,24 +29,36 @@ const Oauth2SignupPage = () => {
   const [success, setSuccess] = useState('');
 
   useEffect(() => {
-    const fetchSessionUser = async () => {
+    const fetchTempUser = async () => {
+      if (!state) {
+        setError('잘못된 접근입니다 (state 없음)');
+        return;
+      }
+
       try {
+        const csrfToken = getCookie('XSRF-TOKEN'); // ✅ 쿠키에서 CSRF 토큰 읽기
+
         const res = await axios.get(
-          'http://localhost:8080/oauth2/session-user',
+          // `https://zipte-dev.store/api/v1/oauth2/temp-user/${state}`,
+          `http://localhost:8080/api/v1/oauth2/temp-user/${state}`,
           {
             withCredentials: true,
+            headers: {
+              'X-XSRF-TOKEN': csrfToken,
+            },
           }
         );
-        console.log('세션 사용자 정보:', res.data.data); // 👈 여기!
+
+        console.log('임시 사용자 정보:', res.data);
         setOauthUser(res.data.data);
       } catch (err) {
         console.error(err);
-        setError('OAuth 사용자 정보를 불러올 수 없습니다.');
+        setError('임시 OAuth 사용자 정보를 불러올 수 없습니다.');
       }
     };
 
-    fetchSessionUser();
-  }, []);
+    fetchTempUser();
+  }, [state]);
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
@@ -59,8 +82,11 @@ const Oauth2SignupPage = () => {
     }
 
     try {
+      const csrfToken = getCookie('XSRF-TOKEN'); // ✅ POST 요청 시에도 새로 읽기
+
       const response = await axios.post(
-        'http://localhost:8080/oauth2',
+        // 'https://zipte-dev.store/api/v1/oauth2',
+        'http://localhost:8080/api/v1/oauth2',
         {
           email: oauthUser.email,
           socialId: oauthUser.providerId,
@@ -73,12 +99,15 @@ const Oauth2SignupPage = () => {
         },
         {
           withCredentials: true,
+          headers: {
+            'X-XSRF-TOKEN': csrfToken,
+          },
         }
       );
 
       setSuccess('회원가입이 완료되었습니다!');
-      window.location.href = 'http://localhost:3000'; // ✅ 여기서 리다이렉트
       setError('');
+      window.location.href = 'http://localhost:3000'; // 회원가입 후 리다이렉션
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || '회원가입에 실패했습니다.');

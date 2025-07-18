@@ -19,7 +19,7 @@ export default function SuccessPage() {
 
     async function confirm() {
       const response = await fetch(
-        'http://localhost:8080/api/payments/toss/confirm',
+        'http://localhost:8080/api/v1/payment/confirm',
         {
           method: 'POST',
           headers: {
